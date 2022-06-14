@@ -1,0 +1,9 @@
+<h1>{{ question }}</h1>
+<hr>
+<ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }}</li>
+    {% empty %}
+        <p>There is no choice for this poll yet.</p>
+    {% endfor %}
+</ul>
