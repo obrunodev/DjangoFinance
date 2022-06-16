@@ -1,6 +1,3 @@
-<h1>{{ question }}</h1>
-<hr>
-
 <form action="{% url 'polls:vote' question.pk %}" method="post">
     {% csrf_token %}
     <fieldset>
