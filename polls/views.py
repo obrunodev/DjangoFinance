@@ -21,6 +21,13 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
+    
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
+    
 
 
 class ResultsView(generic.DetailView):
@@ -29,7 +36,6 @@ class ResultsView(generic.DetailView):
 
 
 # ==== FUNCTION BASED VIEWS ====
-
 
 # def index(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -45,7 +51,6 @@ class ResultsView(generic.DetailView):
 # def results(request, question_id):
 #     question = get_object_or_404(Question, pk=question_id)
 #     return render(request, 'polls/results.html', {'question': question})
-
 
 # ==== FUNÇÕES COMENTADAS POIS FORAM TROCADAS POR CLASS BASED VIEWS ====
 
