@@ -1,0 +1,58 @@
+<div class="row">
+
+    {% for category in categories %}
+        <div class="col-lg-6">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>{{ category.name|upper }}</th>
+                        <th>Custo previsto</th>
+                        <th>Custo real</th>
+                        <th>Diferença</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for spending in spendings %}
+                        {% if spending.category == category %}
+                            <tr>
+                                <td>
+                                    <a href="#" class="link"><i class="bi bi-trash3-fill text-danger"></i></a>
+                                    {{ spending.description }}
+                                </td>
+                                <td>R$ {{ spending.expected_cost|floatformat:2 }}</td>
+                                <td>
+                                    <a href="#" class="link"><i class="bi bi-credit-card-2-back-fill text-success"></i></a>
+                                    R$ {{ spending.real_cost|floatformat:2 }}
+                                </td>
+                                <td>
+                                    {% if spending.difference < 0 %}
+                                        <i class="bi bi-dash-circle-fill text-danger"></i>
+                                    {% elif spending.difference > 0 %}
+                                        <i class="bi bi-check-circle-fill text-success"></i>
+                                    {% endif %}
+                                    R$ {{ spending.difference|floatformat:2 }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>TOTAL</th>
+                        <th>R$ {{ category.total_expected_cost|floatformat:2 }}</th>
+                        <th>R$ {{ category.total_real_cost|floatformat:2 }}</th>
+                        <th>
+                            {% if category.total_difference < 0 %}
+                                <i class="bi bi-dash-circle-fill text-danger"></i>
+                            {% elif category.total_difference > 0 %}
+                                <i class="bi bi-check-circle-fill text-success"></i>
+                            {% endif %}
+                            R$ {{ category.total_difference|floatformat:2 }}
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    {% endfor %}
+
+</div>

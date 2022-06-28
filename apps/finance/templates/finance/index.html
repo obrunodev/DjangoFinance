@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Teste{% endblock title %}
+{% block title %}Meus gastos{% endblock title %}
 {% block content %}
 
     {% include 'partials/navbar.html' %}
 
-    <h1>Home</h1>
+    <div class="container-fluid mt-5">
+
+        <h3>Meus gastos</h3>
+
+        {% include './partials/new_spending.html' %}
+
+        {% include './partials/spendings_tables.html' %}
+
+    </div>
 
 {% endblock content %}
