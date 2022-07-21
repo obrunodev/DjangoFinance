@@ -4,8 +4,10 @@
 
     {% include 'partials/navbar.html' %}
 
-    <div class="container mt-5">
-        <h1 class="display-5">Renda mensal</h1>
+    <div class="container mt-3">
+        <h1 class="display-5">Listagem de rendas</h1>
+
+        <a href="{% url 'finance:income_manage' %}" class="btn btn-dark my-3">Gerenciar</a>
 
         <div class="row">
             <div class="col-md-8">
@@ -29,7 +31,14 @@
                         </tr>
                         <tr>
                             <th>Relação renda</th>
-                            <td>R$ {{ relation|floatformat:2 }}</td>
+                            <td 
+                                {% if relation < 0 %}
+                                    class="text-danger"
+                                {% else %}
+                                    class="text-success"
+                                {% endif %}>
+                                R$ {{ relation|floatformat:2 }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
