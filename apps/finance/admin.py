@@ -1,19 +1,15 @@
 from django.contrib import admin
 
+from finance.models import Category, Income
 
-from finance.models import Spending
+@admin.register(Category)
+class AdminCategory(admin.ModelAdmin):
+    search_fields = ('name',)
 
 
-@admin.register(Spending)
-class SpendingAdmin(admin.ModelAdmin):
-    list_display = ('description', 'value')
-    # list_display_links = ('title', 'author')
-    # list_filter = ('author',)
-    list_per_page = 20
-    list_max_show_all = 100
-    empty_value_display = 'Vazio'
-    search_fields = ['description']
-
-    # QUAIS CAMPOS DEVE APARECER/REMOVER DA TELA DE EDIÇÃO
-    # fields = (('first_name', 'last_name'), 'seniority')
-    # exclude = ('first_name', 'last_name')
+@admin.register(Income)
+class AdminIncome(admin.ModelAdmin):
+    list_display = ('description', 'expected_value', 'real_value', 'day_recurrency', 'category')
+    list_filter = ('day_recurrency', 'category')
+    ordering = ('day_recurrency',)
+    search_fields = ('description',)

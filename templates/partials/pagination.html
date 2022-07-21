@@ -1,0 +1,15 @@
+<nav>
+    <ul class="pagination justify-content-end">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primeiro</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+        {% endif %}
+
+        <li class="page-item"><div class="page-link text-dark">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</div></li>
+        
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próximo</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a></li>
+        {% endif %}
+    </ul>
+</nav>

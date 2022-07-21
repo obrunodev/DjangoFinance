@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    {% include 'partials/message.html' %}
+
+    <div class="card m-auto w-50 mt-5">
+        <div class="card-header">
+            <h4>Dados do usuário</h4>
+        </div>
+        <div class="card-body">
+            <h5>Nome de usuário:</h5>
+            <p>{{ request.user }}</p>
+            <h5>Nome de e-mail:</h5>
+            <p>{{ request.user.email }}</p>
+        </div>
+        <a href="#" class="btn btn-primary disabled">Completar registro</a>
+    </div>
+
+{% endblock content %}

@@ -1,4 +1,5 @@
 from django.contrib.messages import constants as messages
+from decouple import config
 from pathlib import Path
 
 import os
@@ -12,10 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a--xg+=(pk6%l3ga)%!cv^am2k&hirx4443371qaz2pjiuw#*1'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -27,13 +28,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # 3rd apps
+    'debug_toolbar',
+    # My apps
     'core',
     'finance',
+    'user',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -106,9 +110,7 @@ USE_TZ = True
 
 # CONFIGURAÇÃO DE ARQUIVOS ESTÁTICOS
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets'),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # CONFIGURAÇÃO DE ARQUIVOS DE MÍDIA
@@ -128,3 +130,5 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))
 
 # GERAR ID AUTOMATICAMENTE
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS = ['127.0.0.1']

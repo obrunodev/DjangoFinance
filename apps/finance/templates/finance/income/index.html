@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Renda{% endblock title %}
+{% block content %}
+
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <h1 class="display-5">Renda mensal</h1>
+
+        <div class="row">
+            <div class="col-md-8">
+                {% include './partials/income_list_table.html' %}
+            </div>
+            <div class="col-md-4">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th colspan="2" class="text-center">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Valor esperado</th>
+                            <td>R$ {{ total_expected_value|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Valor real</th>
+                            <td>R$ {{ total_real_value|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Relação renda</th>
+                            <td>R$ {{ relation|floatformat:2 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

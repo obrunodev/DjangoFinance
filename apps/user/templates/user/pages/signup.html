@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock title %}
+{% block content %}
+
+    <div class="card user-form">
+        <div class="card-header">
+            <h1>Criar conta</h1>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'user:signup' %}" method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+
+                    {% if field.errors %}
+                        <div class="form-text text-danger">{{ field.errors }}</div>
+                    {% endif %}
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary mt-3">Criar conta</button>
+                <a class="ml-3" href="{% url 'user:signin' %}">Já tenho uma conta</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

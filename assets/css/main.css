@@ -1,2 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
-@import url('../vendors/bootstrap/css/bootstrap.min.css');
+@import url("../vendors/bootstrap/css/bootstrap.min.css");
+
+body { font-family: 'Poppins', sans-serif; }
+
+.todo-container { max-width: 500px; }
+
+.user-form {
+    margin: 100px auto;
+    max-width: 500px;
+}

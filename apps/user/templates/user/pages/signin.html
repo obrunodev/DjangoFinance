@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+
+    <div class="card user-form">
+        <div class="card-header">
+            <h1>Faça login</h1>
+        </div>
+        <div class="card-body">
+            {% include 'partials/message.html' %}
+
+            <form action="{% url 'user:signin' %}" method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary mt-3">Login</button>
+                <a class="ms-3" href="{% url 'user:signup' %}">Criar conta</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

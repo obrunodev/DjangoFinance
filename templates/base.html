@@ -1,25 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block extra-meta %}{% endblock extra-meta %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock meta %}
 
-        <title>{% block title %}{% endblock title %} - Finance</title>
+    <title>{% block title %}{% endblock title %} - Finance</title>
 
-        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        {% block extra-css %}{% endblock extra-css %}
-    </head>
-    <body>
-        {% block content %}{% endblock content %}
-        
-        <script src="{% static 'vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static 'vendors/jquery/jquery.min.js' %}"></script>
-        {# <script src="{% static 'vendors/htmx/htmx.min.js' %}"></script> #}
-        {% block extra-js %}{% endblock extra-js %}
-    </body>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    {% block content %}{% endblock content %}
+    
+    <script src="{% static 'vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors/htmx/js/htmx.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery/js/jquery.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery/js/jquery.formset.js' %}"></script>
+    <script src="{% static 'vendors/jquery/js/jquery.mask.min.js' %}"></script>
+    {% block js %}{% endblock js %}
+</body>
 </html>
